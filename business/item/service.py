@@ -6,8 +6,8 @@ class ItemService():
     def __init__(self, db: Session):
         self.item_repository = ItemRepository(db)
         
-    def get_item_by_id(self, user_id: int):
-        self.item_repository.get_item_by_id(user_id)
+    def get_item_by_id(self, item_id: int):
+        self.item_repository.get_item_by_id(item_id)
         
     def get_item_by_name(self, name: str):
         return self.item_repository.get_item_by_name(name)
