@@ -20,7 +20,7 @@ class ProductBalanceController:
         db_user = user_service.get_user(user_id)
         if db_user is None:
             raise HTTPException(status_code=404, detail="User not found")
-        return product_balance_service.add_product_amount(user_id, product.product_id, product.amount)
+        return product_balance_service.add_product_amount(user_id, product.item_id, product.amount)
     
     @router.post("/{user_id}/remove-product", response_model=ProductBalance)
     async def remove_product(self, user_id: int, product: ProductBalanceUpdateAmount):
@@ -29,5 +29,5 @@ class ProductBalanceController:
         db_user = user_service.get_user(user_id)
         if db_user is None:
             raise HTTPException(status_code=404, detail="User not found")
-        return product_balance_service.remove_product_amount(user_id, product.product_id, product.amount)
+        return product_balance_service.remove_product_amount(user_id, product.item_id, product.amount)
     
