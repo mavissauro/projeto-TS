@@ -1,11 +1,13 @@
 from .repository import UserRepository, UserCreate, User
 from ..wallet.repository import WalletRepository, WalletCreate
+from ..product_balance.repository import ProductBalanceRepository, ProductBalanceCreate, ProductBalance
 from sqlalchemy.orm import Session
 
 class UserService():
     def __init__(self, db: Session):
         self.user_repository = UserRepository(db)
         self.wallet_repository = WalletRepository(db)
+        self.product_balance_repository = ProductBalanceRepository(db)
         
     def get_user(self, user_id: int):
         return self.user_repository.get_user(user_id)
@@ -39,3 +41,12 @@ class UserService():
         wallet = self.wallet_repository.get_wallet_by_user_id(user_id)
         wallet.balance += amount
         return self.wallet_repository.update_wallet(wallet)
+    
+    def add_product_amount(self, user_id: int, item_id: int, amount: int):
+        product_balance = self.product_balance_repository.get_product_balance_by_user_id_and_item_id(user_id, item_id)
+        if product_balance:
+            product_balance.amount += amount
+            return self.product_balance_repository.update_product_balance(product_balance)
+        else:
+            product_balance = ProductBalanceCreate(user_id=user_id, item_id=item_id, amount=amount)
+            return self.product_balance_repository.create_product_balance(product_balance)

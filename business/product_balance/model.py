@@ -16,3 +16,9 @@ class ProductBalance(ProductBalanceBase):
 
     class Config:
         orm_mode = True
+        
+
+class ProductBalanceAddAmount(BaseModel):
+    user_id: int
+    item_id: int
+    amount: int
