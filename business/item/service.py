@@ -1,4 +1,3 @@
-
 from .repository import ItemRepository, ItemCreate, Item
 from sqlalchemy.orm import Session
 
@@ -7,7 +6,7 @@ class ItemService():
         self.item_repository = ItemRepository(db)
         
     def get_item_by_id(self, item_id: int):
-        self.item_repository.get_item_by_id(item_id)
+        return self.item_repository.get_item_by_id(item_id)
         
     def get_item_by_name(self, name: str):
         return self.item_repository.get_item_by_name(name)

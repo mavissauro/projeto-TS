@@ -14,3 +14,8 @@ class Wallet(WalletBase):
 
     class Config:
         orm_mode = True
+        
+
+class WalletAddFounds(BaseModel):
+    user_id: int
+    amount: int

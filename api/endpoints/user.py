@@ -3,6 +3,7 @@ from fastapi_utils.cbv import cbv
 from fastapi_utils.inferring_router import InferringRouter
 from business.user.model import User, UserCreate
 from business.user.service import UserService
+from business.wallet.model import Wallet, WalletAddFounds
 from sqlalchemy.orm import Session
 from api.deps import get_db
 
@@ -23,7 +24,7 @@ class UserController:
         db_user = user_service.get_user_by_email(user.email)
         if db_user:
             raise HTTPException(status_code=400, detail="Email already registered")
-        return user_service.create_user(user)
+        return user_service.create_user_with_wallet(user)
     
     @router.get("/{user_id}", response_model=User)
     async def get_user(self, user_id: int):
@@ -48,3 +49,11 @@ class UserController:
         if db_user is None:
             raise HTTPException(status_code=404, detail="User not found")
         return user_service.delete_user(user_id)
+    
+    @router.post("/{user_id}/add-founds", response_model=Wallet)
+    async def add_founds(self, user_id: int, wallet: WalletAddFounds):
+        user_service = UserService(self.db)
+        db_user = user_service.get_user(user_id)
+        if db_user is None:
+            raise HTTPException(status_code=404, detail="User not found")
+        return user_service.add_founds(user_id, wallet.amount)

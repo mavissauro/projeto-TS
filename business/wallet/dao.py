@@ -1,7 +1,7 @@
 from sqlalchemy import Column, Integer, ForeignKey
-from database.database import Base
+from ..database.database import Base
 
-class Wallet(Base):
+class WalletDAO(Base):
     __tablename__ = "wallet"
 
     id = Column(Integer, primary_key=True, index=True)

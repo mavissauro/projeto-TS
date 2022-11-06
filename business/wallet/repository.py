@@ -1,7 +1,7 @@
 from sqlalchemy.orm import Session
 
-from dao import WalletDAO
-from model import Wallet, WalletCreate
+from .dao import WalletDAO
+from .model import Wallet, WalletCreate
 
 
 class WalletRepository():
