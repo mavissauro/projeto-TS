@@ -12,6 +12,9 @@ class ItemRepository():
     
     def get_item_by_id(self, item_id: int):
         return self.db.query(ItemDAO).filter(ItemDAO.id == item_id).first()
+    
+    def get_item_by_name(self, name: str):
+        return self.db.query(ItemDAO).filter(ItemDAO.name == name).first()
 
     def create_item(self, item: ItemCreate):
         db_item = ItemDAO(**item.dict())

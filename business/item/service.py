@@ -9,6 +9,9 @@ class ItemService():
     def get_item_by_id(self, user_id: int):
         self.item_repository.get_item_by_id(user_id)
         
+    def get_item_by_name(self, name: str):
+        return self.item_repository.get_item_by_name(name)
+        
     def get_items_page(self, skip: int, limit: int):
         return self.item_repository.get_items(skip, limit)
     

@@ -8,6 +8,7 @@ from api.deps import get_db
 
 router = InferringRouter()
 
+@cbv(router)
 class ItemController:
     db:Session = Depends(get_db)
     
