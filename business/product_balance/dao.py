@@ -1,5 +1,5 @@
 from sqlalchemy import Boolean, Column, ForeignKey, Integer
-from database.database import Base
+from ..database.database import Base
 
 class ProductBalanceDAO(Base):
     __tablename__ = "product_balances"

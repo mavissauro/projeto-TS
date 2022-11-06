@@ -1,7 +1,7 @@
 from sqlalchemy.orm import Session
 
-from dao import ProductBalanceDAO
-from model import ProductBalance, ProductBalanceCreate
+from .dao import ProductBalanceDAO
+from .model import ProductBalance, ProductBalanceCreate
 
 class ProductBalanceRepository():
     def __init__(self, db: Session):
