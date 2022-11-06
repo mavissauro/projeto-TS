@@ -4,13 +4,16 @@ class TransactionBase(BaseModel):
     item_id: int
     buyer_id: int
     seller_id: int
-    price: int
     balance: int
 
 
-class TransactionCreate(TransactionBase):
+class TransactionCreateReq(TransactionBase):
     pass
 
+
+class TransactionCreate(TransactionBase):
+    price: int
+    pass
 
 class Transaction(TransactionBase):
     id: int
