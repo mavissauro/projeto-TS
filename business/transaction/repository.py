@@ -1,7 +1,7 @@
 from sqlalchemy.orm import Session
 
-from .dao import TransactionDAO
-from .model import TransactionCreate
+from business.transaction.dao import TransactionDAO
+from business.transaction.model import TransactionCreate
 
 
 class TransactionRepository():

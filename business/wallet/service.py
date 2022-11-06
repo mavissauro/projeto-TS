@@ -19,5 +19,21 @@ class WalletService():
         wallet = self.wallet_repository.get_wallet_by_user_id(user_id)
         wallet.balance += amount
         return self.wallet_repository.update_wallet(wallet)
- 
+    
+    def remove_founds(self, user_id: int, amount: int):
+        wallet = self.wallet_repository.get_wallet_by_user_id(user_id)
+        if wallet is None:
+            raise Exception("Wallet not found")
+        if wallet.balance < amount:
+            raise Exception("Not enough founds")
+        wallet.balance -= amount
+        return self.wallet_repository.update_wallet(wallet)
+    
+    def validate_founds(self, user_id: int, amount: int):
+        wallet = self.wallet_repository.get_wallet_by_user_id(user_id)
+        if wallet is None:
+            raise Exception("Wallet not found")
+        if wallet.balance < amount:
+            raise Exception("Not enough founds")
+        return True
     

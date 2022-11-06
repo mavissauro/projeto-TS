@@ -16,6 +16,6 @@ class Wallet(WalletBase):
         orm_mode = True
         
 
-class WalletAddFounds(BaseModel):
+class WalletUpdateFounds(BaseModel):
     user_id: int
     amount: int

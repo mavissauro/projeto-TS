@@ -25,9 +25,18 @@ class ProductBalanceService():
 
     def remove_product_amount(self, user_id: int, item_id: int, amount: int):
         product_balance = self.get_product_balance_by_user_id_and_item_id(user_id, item_id)
-        if product_balance:
-            product_balance.amount -= amount
-            return self.update_product_balance(product_balance)
-        else:
-            product_balance = ProductBalanceCreate(user_id=user_id, item_id=item_id, amount=amount)
-            return self.create_product_balance(product_balance)
+        if product_balance is None:
+            raise Exception("Product balance not found")
+        if product_balance.amount < amount:
+            raise Exception("Not enough product amount")
+        product_balance.amount -= amount
+        return self.update_product_balance(product_balance)
+    
+    def validate_product_amount(self, user_id: int, item_id: int, amount: int):
+        product_balance = self.get_product_balance_by_user_id_and_item_id(user_id, item_id)
+        if product_balance is None:
+            raise Exception("Product balance not found")
+        if product_balance.amount < amount:
+            raise Exception("Not enough product amount")
+        return True
+            

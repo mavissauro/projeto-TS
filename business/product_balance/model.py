@@ -18,7 +18,7 @@ class ProductBalance(ProductBalanceBase):
         orm_mode = True
         
 
-class ProductBalanceAddAmount(BaseModel):
+class ProductBalanceUpdateAmount(BaseModel):
     user_id: int
     item_id: int
     amount: int
